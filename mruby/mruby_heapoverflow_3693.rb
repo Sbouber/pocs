@@ -2,10 +2,14 @@
 # Issue: https://github.com/mruby/mruby/issues/3693
 # Reported via hackerone
 
-def a
+def one
+  too { yield }
+endbegin;1;rescue => e1;e1;end;
+
+def too
   yield
 ensure
-lambda {a a { return proc{}} }.call
+  one { break }
 end
 
-lambda { a { return } }.call
+one
